@@ -4,8 +4,9 @@ import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class ProducerConsumer {
+public class BlockingQueueImplementation {
 	
+	// Thread safe data structure
 	private static BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
 	
 	private static void produce() throws InterruptedException {
@@ -22,10 +23,10 @@ public class ProducerConsumer {
 		Random random = new Random();
 		Integer value;
 		while(true) {
-			Thread.sleep(1000);
+			Thread.sleep(1000);// to ensure that producer gets a chance to execute
 			if (random.nextInt(10) == 1) {
 				value = queue.take();
-				System.out.println("Cosumed the value : " + value + "; Queue Size is :" + queue.size());
+				System.out.println("Consumed the value : " + value + "; Queue Size is :" + queue.size());
 			}
 		}
 	}
